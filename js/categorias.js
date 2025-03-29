@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <img src="${categoria.strCategoryThumb}" class="card-img-top" alt="${categoria.strCategory}">
               <div class="card-body text-center">
                 <h5 class="card-title">${categoria.strCategory}</h5>
+                <a href="recetas.html?categoria=${categoria.strCategory}" class="btn btn-primary">Ver Recetas</a>                
               </div>
             </div>
           `;
@@ -29,4 +30,3 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error:", error);
       });
   });
-  
