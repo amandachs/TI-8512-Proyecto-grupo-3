@@ -41,7 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="card h-100 card-receta shadow-sm">
               <img src="${meal.strMealThumb}" class="card-img-top" alt="${meal.strMeal}">
               <div class="card-body text-center">
-                <h5 class="card-title">${meal.strMeal}</h5>
+                <h5 class="card-title">
+                  <a href="detalle-receta.html?id=${meal.idMeal}" class="text-decoration-none text-dark">
+                    ${meal.strMeal}
+                  </a>
+                </h5>
               </div>
             </div>
           `;

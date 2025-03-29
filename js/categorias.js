@@ -16,8 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="card h-100 card-category shadow-sm">
               <img src="${categoria.strCategoryThumb}" class="card-img-top" alt="${categoria.strCategory}">
               <div class="card-body text-center">
-                <h5 class="card-title">${categoria.strCategory}</h5>
-                <a href="recetas.html?categoria=${categoria.strCategory}" class="btn btn-primary">Ver Recetas</a>                
+                <h5 class="card-title">
+                  <a href="recetas.html?categoria=${categoria.strCategory}" class="text-decoration-none text-dark">
+                    ${categoria.strCategory}
+                  </a>
+                </h5>
               </div>
             </div>
           `;
