@@ -7,11 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Cargar recetas desde la API
   async function cargarRecetas() {
-    const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/search.php?s="
-    );
-    const data = await res.json();
-    recetas = data.meals || [];
+    const letras = "abcdefghijklmnopqrstuvwxyz".split("");
+    recetas = [];
+
+    for (const letra of letras) {
+      try {
+        const res = await fetch(
+          `https://www.themealdb.com/api/json/v1/1/search.php?f=${letra}`
+        );
+        const data = await res.json();
+        if (data.meals) {
+          recetas = recetas.concat(data.meals);
+        }
+      } catch (error) {
+        console.error(`Error al cargar recetas con letra ${letra}`, error);
+      }
+    }
+
+    console.log(`Recetas cargadas: ${recetas.length}`);
   }
 
   // Mostrar sugerencias con animación
