@@ -1,0 +1,19 @@
+/* Hacemos que el contenedor del gráfico sea responsive */
+#chartContainer {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    height: 700px;
+}
+  
+@media (max-width: 768px) {
+    #chartContainer {
+        height: 800px;
+    }
+}
+
+@media (max-width: 480px) {
+    #chartContainer {
+        height: 900px;
+    }
+}
