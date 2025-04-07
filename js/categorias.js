@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
           col.className = "col-md-4 col-lg-3";
   
           col.innerHTML = `
-            <div class="card h-100 card-category shadow-sm">
+            <div class="card h-100 card-category shadow-sm" style="background-color: #F5F5F5;">
               <img src="${categoria.strCategoryThumb}" class="card-img-top" alt="${categoria.strCategory}">
-              <div class="card-body text-center">
+              <div class="card-body text-left">
                 <h5 class="card-title">
                   <a href="recetas.html?categoria=${categoria.strCategory}" class="text-decoration-none text-dark">
                     ${categoria.strCategory}
