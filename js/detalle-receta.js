@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("imagen").src = receta.strMealThumb;
       document.getElementById("imagen").alt = receta.strMeal;
       document.getElementById("nombre-receta").textContent = receta.strMeal;
-      document.getElementById("categoria-receta").textContent = receta.strCategory;
+      const categoriaLink = document.getElementById("categoria-receta");
+      categoriaLink.textContent = receta.strCategory;
+      categoriaLink.href = `recetas.html?categoria=${receta.strCategory}`;
 
       const lista = document.getElementById("lista-ingredientes");
       for (let i = 1; i <= 20; i++) {
