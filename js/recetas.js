@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const nombreCategoria = document.getElementById("nombre-categoria");
     const contenedor = document.getElementById("recetas");
-    const banner = document.getElementById("imagen-banner");
   
     if (!categoria) {
       contenedor.innerHTML = "<p>No se especificó una categoría.</p>";
@@ -12,17 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     nombreCategoria.textContent = categoria;
-  
-    // Imagen del banner dinámico
-    fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
-      .then(res => res.json())
-      .then(data => {
-        const catData = data.categories.find(cat => cat.strCategory === categoria);
-        if (catData) {
-          banner.src = catData.strCategoryThumb;
-          banner.alt = categoria;
-        }
-      });
   
     // Obtener recetas
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`)
