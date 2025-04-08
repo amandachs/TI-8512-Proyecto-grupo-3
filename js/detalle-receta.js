@@ -3,13 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const id = params.get("id");
 
   if (!id) {
-    document.body.innerHTML = "<p class='text-center text-danger'>No se encontró la receta.</p>";
+    document.body.innerHTML =
+      "<p class='text-center text-danger'>No se encontró la receta.</p>";
     return;
   }
 
   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       const receta = data.meals[0];
 
       document.getElementById("imagen").src = receta.strMealThumb;
@@ -30,8 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error al cargar la receta:", error);
-      document.body.innerHTML = "<p class='text-center text-danger'>Error al cargar los datos de la receta.</p>";
+      document.body.innerHTML =
+        "<p class='text-center text-danger'>Error al cargar los datos de la receta.</p>";
     });
 });
