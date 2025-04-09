@@ -1,9 +1,6 @@
-import { obtenerCantidadRecetasPorCategoria } from "./grafico.js";
-
 document.addEventListener("DOMContentLoaded", () => {
   const contenedor = document.getElementById("contenedor-categorias");
   const chartContainer = document.getElementById("chartContainer");
-  const infoContainer = document.getElementById("infoContainer");
 
   chartContainer.innerHTML = '<p class="text-center">Cargando...</p>';
 
@@ -34,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         contenedor.appendChild(col);
       });
 
-      // Después de cargar las categorías, se obtienen las cantidades de recetas por categoría
       obtenerCantidadRecetasPorCategoria(categorias);
     })
     .catch((error) => {

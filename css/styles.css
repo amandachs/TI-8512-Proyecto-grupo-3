@@ -1,10 +1,11 @@
-/* Hacemos que el contenedor del gráfico sea responsive */
+/* Contenedor del gráfico responsive */
 #chartContainer {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
   height: 700px;
 }
+
 @media (max-width: 768px) {
   #chartContainer {
     height: 800px;
@@ -16,17 +17,22 @@
     height: 900px;
   }
 }
+
 /* Fuente general */
 body {
   font-family: "Inter", sans-serif;
 }
 
 /* Fondo principal */
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 #buscador {
-  background-image: url("/images/background.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
   margin: 0;

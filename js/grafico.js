@@ -25,6 +25,7 @@ async function obtenerCantidadRecetasPorCategoria(categorias) {
   generarGrafico(nombresCategorias, recetasPorCategoria, coloresVerde);
 }
 
+
 function generarGrafico(categorias, recetas, colores) {
   const chartContainer = document.getElementById("chartContainer");
   chartContainer.innerHTML = "";
@@ -60,6 +61,7 @@ function generarGrafico(categorias, recetas, colores) {
   Plotly.newPlot("chartContainer", data, layout, config);
 }
 
+
 function generarColoresVerde(cant) {
   const coloresVerde = [];
   const verdeBase = [26, 86, 31];
@@ -73,5 +75,3 @@ function generarColoresVerde(cant) {
   }
   return coloresVerde;
 }
-
-export { obtenerCantidadRecetasPorCategoria };
