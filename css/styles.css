@@ -46,7 +46,7 @@ body {
 }
 
 /* Contenedor del buscador */
-.contenedor-buscador {
+.buscador__contenedor {
   position: relative;
   width: 100%;
   max-width: 500px;
@@ -63,15 +63,15 @@ body {
 }
 
 /* Logo animado */
-.logo-blackspoon {
+.logo {
   width: 32px;
   height: 32px;
   object-fit: contain;
-  animation: balanceo 2.5s ease-in-out infinite;
+  animation: logo__balanceo 2.5s ease-in-out infinite;
   transform-origin: center center;
 }
 
-@keyframes balanceo {
+@keyframes logo__balanceo {
   0%,
   100% {
     transform: rotate(0deg);
@@ -85,14 +85,14 @@ body {
 }
 
 /* Nombre de marca */
-.nombreMarca {
+.marca__nombre {
   font-size: 24px;
   font-weight: 600;
   color: #000000;
 }
 
 /* Título y descripción */
-#titulo-buscador {
+.buscador__titulo {
   width: 464px;
   height: 38px;
   font-size: 24px;
@@ -100,7 +100,7 @@ body {
   margin: 0;
 }
 
-#descripcion-buscador {
+.buscador__descripcion {
   font-size: 13px;
   margin: 0;
   color: #333;
@@ -108,7 +108,7 @@ body {
 }
 
 /* Campo de búsqueda */
-.barra-buscador {
+.buscador__barra {
   width: 360px;
   height: 56px;
   margin: 0 auto;
@@ -124,23 +124,23 @@ body {
   gap: 4px;
 }
 
-.barra-buscador:focus {
+.buscador__barra:focus {
   border: 2px solid #000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   transform: scale(1.01);
 }
 
-.barra-buscador::placeholder {
+.buscador__barra::placeholder {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.barra-buscador:focus::placeholder {
+.buscador__barra:focus::placeholder {
   transform: translateX(4px);
   opacity: 0.5;
 }
 
 /* Sugerencias desplegables */
-#sugerencias {
+.buscador__sugerencias {
   position: absolute;
   top: 100%;
   left: 50%;
@@ -157,13 +157,13 @@ body {
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-#sugerencias.mostrar {
+.buscador__sugerencias--mostrar {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
   pointer-events: auto;
 }
 
-#sugerencias .list-group-item {
+.buscador__sugerencias-item {
   padding: 12px 16px;
   font-weight: 500;
   cursor: pointer;
@@ -172,11 +172,11 @@ body {
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-#sugerencias .list-group-item:last-child {
+.buscador__sugerencias-item:last-child {
   border-bottom: none;
 }
 
-#sugerencias .list-group-item:hover {
+.buscador__sugerencias-item:hover {
   background-color: #f8f9fa;
   transform: scale(1.01);
 }

@@ -15,26 +15,25 @@
   <header class="bg-white shadow-sm py-3 border-bottom">
     <div class="container-fluid d-flex align-items-center gap-2 ps-3">
       <img
-        src="images/spoon.svg" alt="Logo Black Spoon" class="logo-blackspoon">
+        src="images/spoon.svg" alt="Logo Black Spoon" class="logo">
       <h1 class="m-0 nombreMarca">Black Spoon</h1>
     </div>
   </header>
 
   <section id="buscador">
-    <img src="images/background.svg" alt="Background" class="background">
-    <div class="contenedor-buscador">
-      <h2 id="titulo-buscador">¿Qué te gustaría cocinar?</h2>
-      <h3 id="descripcion-buscador">
-        Descubre recetas de todas partes del mundo, creadas por los mejores
-        chefs.
+    <img src="images/background.svg" alt="Background" class="background" />
+    <div class="buscador__contenedor">
+      <h2 class="buscador__titulo">¿Qué te gustaría cocinar?</h2>
+      <h3 class="buscador__descripcion">
+        Descubre recetas de todas partes del mundo, creadas por los mejores chefs.
       </h3>
       <div class="w-100 d-flex justify-content-center position-relative">
         <input
           type="text"
-          class="form-control barra-buscador"
+          class="form-control buscador__barra"
           placeholder="Buscar"
         />
-        <ul id="sugerencias" class="list-group mt-1"></ul>
+        <ul id="sugerencias" class="buscador__sugerencias list-group mt-1"></ul>
       </div>
     </div>
   </section>

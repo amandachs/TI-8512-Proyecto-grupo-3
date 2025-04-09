@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function mostrarSugerencias(texto) {
     sugerencias.innerHTML = "";
-    sugerencias.classList.remove("mostrar");
+    sugerencias.classList.remove("buscador__sugerencias--mostrar");
 
     if (!texto) return;
 
@@ -37,13 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     filtradas.slice(0, 5).forEach((receta) => {
       const li = document.createElement("li");
-      li.className = "list-group-item list-group-item-action";
+      li.className = "buscador__sugerencias-item";
       li.textContent = receta.strMeal;
       li.addEventListener("click", () => redirigirADetalles(receta));
       sugerencias.appendChild(li);
     });
 
-    sugerencias.classList.add("mostrar");
+    sugerencias.classList.add("buscador__sugerencias--mostrar");
   }
 
   function redirigirADetalles(receta) {
@@ -67,14 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
         redirigirADetalles(match);
       } else {
         sugerencias.innerHTML = `<li class="list-group-item text-danger">No se encontró la receta</li>`;
-        sugerencias.classList.add("mostrar");
+        sugerencias.classList.add("buscador__sugerencias--mostrar");
       }
     }
   });
 
   document.addEventListener("click", (e) => {
     if (!sugerencias.contains(e.target) && e.target !== input) {
-      sugerencias.classList.remove("mostrar");
+      sugerencias.classList.remove("buscador__sugerencias--mostrar");
     }
   });
 
