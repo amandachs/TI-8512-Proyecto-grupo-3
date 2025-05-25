@@ -1,15 +1,15 @@
-// src/App.tsx
 import React from 'react';
-import CategoriaCard from './components/CategoriaCard';
-import styled from 'styled-components';
+import { Routes, Route } from 'react-router-dom';
+import RecetasGrid from './components/RecetasGrid';
 import CategoriasGrid from './components/CategoriasGrid';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <main>
-      <CategoriasGrid />
-    </main>
+    <Routes>
+      <Route path="/" element={<CategoriasGrid />} />
+      <Route path="/categoria/:nombre" element={<RecetasGrid />} />
+    </Routes>
   );
-}
+};
 
 export default App;

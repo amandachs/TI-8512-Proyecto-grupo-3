@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 
 interface CategoriaCardProps {
   nombre: string;
@@ -15,17 +15,17 @@ const CategoriaCard: React.FC<CategoriaCardProps> = ({ nombre, imagen }) => {
       <Card>
         <CardAvatarContainer>
           {!isLoaded && <SkeletonAvatar />}
-          <CardAvatar style={{ backgroundImage: `url(${imagen})` }} $visible={isLoaded}>
+          <CardAvatar
+            style={{ backgroundImage: `url(${imagen})` }}
+            $visible={isLoaded}
+          >
             {/* Imagen invisible para disparar onLoad */}
             <img
               src={imagen}
               alt={nombre}
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               onLoad={() => setIsLoaded(true)}
             />
-            {[...Array(12)].map((_, i) => (
-              <Spark key={i} index={i} />
-            ))}
           </CardAvatar>
         </CardAvatarContainer>
 
@@ -37,26 +37,13 @@ const CategoriaCard: React.FC<CategoriaCardProps> = ({ nombre, imagen }) => {
 
 export default CategoriaCard;
 
-// Animaciones
+// 🔄 Animación shimmer solo para skeletons
 const shimmer = keyframes`
   0% { background-position: -200px 0; }
   100% { background-position: 200px 0; }
 `;
 
-const flicker = keyframes`
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
-`;
-
-const motions = [
-  keyframes`0%{transform:translate(0,0);}50%{transform:translate(8px,-4px);}100%{transform:translate(0,0);}`,
-  keyframes`0%{transform:translate(0,0);}50%{transform:translate(-8px,4px);}100%{transform:translate(0,0);}`,
-  keyframes`0%{transform:translate(0,0);}50%{transform:translate(4px,8px);}100%{transform:translate(0,0);}`,
-  keyframes`0%{transform:translate(0,0);}50%{transform:translate(-4px,-8px);}100%{transform:translate(0,0);}`,
-  keyframes`0%{transform:translate(0,0);}50%{transform:translate(6px,6px);}100%{transform:translate(0,0);}`
-];
-
-// Estructura
+// 📦 Estilos
 const Card = styled.div`
   width: 240px;
   height: 200px;
@@ -70,7 +57,7 @@ const Card = styled.div`
   justify-content: center;
 
   &:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 2px #00000010, 0 0 20px #99999940;
     transform: scale(1.02);
   }
 `;
@@ -107,42 +94,23 @@ const CardAvatar = styled.div<{ $visible: boolean }>`
 `;
 
 const CardTitle = styled.div`
+transition: transform 0.3s ease, opacity 0.3s ease;
   color: #333;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
-`;
-
-const Spark = styled.span<{ index: number }>`
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #FFD700;
-  border-radius: 50%;
-  top: ${() => Math.random() * 90 + 5}%;
-  left: ${() => Math.random() * 90 + 5}%;
-  pointer-events: none;
-  opacity: 0;
 
   ${Card}:hover & {
-    opacity: 1;
-    animation:
-      ${({ index }) => motions[index % motions.length]} 4s infinite ease-in-out,
-      ${flicker} 2.5s infinite ease-in-out;
-    animation-delay: ${({ index }) => index * 0.15}s;
-  }
+    transform: translateY(-4px);
+    opacity: 0.9;
 `;
 
+// 🦴 Skeletons
 const SkeletonAvatar = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: linear-gradient(
-    90deg,
-    #eeeeee 25%,
-    #dddddd 50%,
-    #eeeeee 75%
-  );
+  background: linear-gradient(90deg, #eeeeee 25%, #dddddd 50%, #eeeeee 75%);
   background-size: 400% 100%;
   animation: ${shimmer} 1.2s infinite linear;
 `;
@@ -151,12 +119,7 @@ const SkeletonTitle = styled.div`
   width: 70%;
   height: 20px;
   border-radius: 6px;
-  background: linear-gradient(
-    90deg,
-    #eeeeee 25%,
-    #dddddd 50%,
-    #eeeeee 75%
-  );
+  background: linear-gradient(90deg, #eeeeee 25%, #dddddd 50%, #eeeeee 75%);
   background-size: 400% 100%;
   animation: ${shimmer} 1.2s infinite linear;
 `;
