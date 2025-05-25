@@ -4,6 +4,3 @@ Este proyecto se centra en la visualización de entidades relacionadas con recet
 ### Nomenclaturas utilizadas
 * Nomenclatura para clases: BEM
 * Nomenclatura para variables: lowerCamelCase
-
-
-Hola mundo
