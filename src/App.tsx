@@ -1,35 +1,25 @@
-import React from "react";
-import DetallesRecetaCard from "./components/DetallesRecetaCard"; // Asegúrese de que la ruta coincida
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import CategoriasGrid from './components/CategoriasGrid';
+import RecetasGrid from './components/RecetasGrid';
+import styled from 'styled-components';
 
 const App: React.FC = () => {
-  // Datos simulados
-  const recetaDemo = {
-    nombre: "Spaghetti Bolognese",
-    imagen: "https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg",
-    categoria: "Pasta",
-    ingredientes: [
-      "• 200g Spaghetti",
-      "• 100g Ground Beef",
-      "• 1 Onion",
-      "• 2 Garlic cloves",
-      "• 400g Tomato sauce",
-      "• Olive oil",
-      "• Salt",
-      "• Pepper",
-      "• Basil"
-    ]
-  };
-
   return (
-    <div style={{ padding: "2rem" }}>
-      <DetallesRecetaCard
-        nombre={recetaDemo.nombre}
-        imagen={recetaDemo.imagen}
-        categoria={recetaDemo.categoria}
-        ingredientes={recetaDemo.ingredientes}
-      />
-    </div>
+    <Main>
+      <Routes>
+        <Route path="/" element={<CategoriasGrid />} />
+        <Route path="/categoria/:nombre" element={<RecetasGrid />} />
+      </Routes>
+    </Main>
   );
 };
 
 export default App;
+
+// Estilos
+const Main = styled.main`
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
