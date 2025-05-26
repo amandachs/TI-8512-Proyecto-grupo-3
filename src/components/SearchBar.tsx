@@ -106,8 +106,8 @@ const SearchBar: React.FC = () => {
 export default SearchBar;
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 700px;
   background-image: url(${background});
   background-size: cover;
   background-position: center;
@@ -146,7 +146,7 @@ const InputContainer = styled.div`
   margin: 0 auto;
 
   input {
-    width: 80%;
+    width: 100%;
     height: 50px;
     border-radius: 28px;
     padding: 0 20px;
