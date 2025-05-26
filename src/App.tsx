@@ -7,13 +7,17 @@ import styled from 'styled-components';
 import Navbar from './components/NavBar';
 import SearchBar from './components/SearchBar';
 import HomePage from './pages/HomePage';
+import { GlobalStyle } from './styles/GlobalStyle';
 
 const App: React.FC = () => {
   return (
     <>
+      <GlobalStyle />
       <HeaderContainer>
         <Navbar />
-        <SearchBar />
+        <Routes>
+          <Route path="/" element={<SearchBar />} />
+        </Routes>
       </HeaderContainer>
       <Main>
         <Routes>
