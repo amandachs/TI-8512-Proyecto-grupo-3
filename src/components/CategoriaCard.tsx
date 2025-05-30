@@ -103,6 +103,7 @@ transition: transform 0.3s ease, opacity 0.3s ease;
   ${Card}:hover & {
     transform: translateY(-4px);
     opacity: 0.9;
+  }
 `;
 
 // 🦴 Skeletons

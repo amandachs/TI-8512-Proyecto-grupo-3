@@ -7,6 +7,9 @@ import styled from 'styled-components';
 import Navbar from './components/NavBar';
 import SearchBar from './components/SearchBar';
 import HomePage from './pages/HomePage';
+import Modal from './components/NotificationModal';
+import Geolocation from './components/Geolocation';
+
 import { GlobalStyle } from './styles/GlobalStyle';
 
 const App: React.FC = () => {
@@ -20,6 +23,8 @@ const App: React.FC = () => {
         </Routes>
       </HeaderContainer>
       <Main>
+        <Modal />
+        <Geolocation />
         <Routes>
           <Route path="/" element={<CategoriasGrid />} />
           <Route path="/categoria/:nombre" element={<RecetasGrid />} />
