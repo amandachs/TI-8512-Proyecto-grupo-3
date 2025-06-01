@@ -28,9 +28,9 @@ const Navbar: React.FC = () => {
             </Burger>
           </BurgerIcon>
           <NavButtons $isOpen={isOpen}>
-            <NavButton to="/x1">Sección 1</NavButton>
-            <NavButton to="/x2">Sección 2</NavButton>
-            <NavButton to="/x3">Sección 3</NavButton>
+            <NavButton to="/mapa">Mapa</NavButton>
+            <NavButton to="/modal">Modal</NavButton>
+            <NavButton to="/x3">Gráfico</NavButton>
           </NavButtons>
         </RightContainer>
       </Container>

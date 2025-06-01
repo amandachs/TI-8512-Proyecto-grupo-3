@@ -23,8 +23,10 @@ const App: React.FC = () => {
         </Routes>
       </HeaderContainer>
       <Main>
-        <Modal />
-        <Geolocation />
+        <Routes>
+          <Route path="/mapa" element={<Geolocation />} />
+          <Route path="/modal" element={<Modal />} />
+        </Routes>
         <Routes>
           <Route path="/" element={<CategoriasGrid />} />
           <Route path="/categoria/:nombre" element={<RecetasGrid />} />
