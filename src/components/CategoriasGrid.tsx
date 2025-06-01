@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import CategoriaCard from './CategoriaCard';
+import BackButton from './BackButton';
+import { useLocation } from 'react-router-dom';
 
 interface Categoria {
   idCategory: string;
@@ -12,6 +14,7 @@ const CategoriasGrid: React.FC = () => {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const location = useLocation();
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
@@ -32,7 +35,7 @@ const CategoriasGrid: React.FC = () => {
 
   return (
     <Container>
-      {error && <ErrorMsg>{error}</ErrorMsg>}
+      {location.pathname !== '/' && <BackButton />}
       <Grid>
         {loading
           ? Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)

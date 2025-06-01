@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DetallesRecetaCard from '../components/DetallesRecetaCard';
+import BackButton from '../components/BackButton';
 
 interface Receta {
   idMeal: string;
@@ -73,12 +74,15 @@ const DetalleReceta: React.FC = () => {
     .map(([_, value]) => value as string);
 
   return (
-    <DetallesRecetaCard
-      nombre={receta.strMeal}
-      imagen={receta.strMealThumb}
-      categoria={receta.strCategory}
-      ingredientes={ingredientes}
-    />
+    <>
+      <BackButton />
+      <DetallesRecetaCard
+        nombre={receta.strMeal}
+        imagen={receta.strMealThumb}
+        categoria={receta.strCategory}
+        ingredientes={ingredientes}
+      />
+    </>
   );
 };
 

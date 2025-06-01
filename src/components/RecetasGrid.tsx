@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import RecetaCard from './RecetaCard';
 import { useParams } from 'react-router-dom';
+import BackButton from './BackButton';
 
 interface Receta {
   idMeal: string;
@@ -53,6 +54,7 @@ const RecetasGrid: React.FC = () => {
 
   return (
     <Container>
+      <BackButton />
       <Heading>{categoria || 'Categoría desconocida'}</Heading>
       {error && <ErrorMsg>{error}</ErrorMsg>}
       <Grid>
