@@ -4,7 +4,7 @@ Este proyecto se centra en la visualización de entidades relacionadas con recet
 ## Organización de componentes por entidad
 Los componentes de React en este proyecto están organizados de forma lógica por **entidad**, lo cual permite una estructura clara, mantenible y escalable.
 
-### 🔍 Agrupación por entidad
+### Agrupación por entidad
 - **Categorías**:
   - `CategoriaCard.tsx` ← Representación visual de una categoría individual
   - `CategoriasGrid.tsx` ← Muestra un conjunto de categorías
