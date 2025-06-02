@@ -9,6 +9,7 @@ import SearchBar from './components/SearchBar';
 import HomePage from './pages/HomePage';
 import Modal from './components/NotificationModal';
 import Geolocation from './components/Geolocation';
+import Titulo from './components/Title';
 
 import { GlobalStyle } from './styles/GlobalStyle';
 
@@ -27,8 +28,17 @@ const App: React.FC = () => {
           <Route path="/mapa" element={<Geolocation />} />
           <Route path="/modal" element={<Modal />} />
         </Routes>
+
         <Routes>
-          <Route path="/" element={<CategoriasGrid />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Titulo>Categorías</Titulo>
+                <CategoriasGrid />
+              </>
+            }
+          />
           <Route path="/categoria/:nombre" element={<RecetasGrid />} />
           <Route path="/detalle/:id" element={<DetalleReceta />} />
           <Route path="/x3" element={<HomePage />} />
