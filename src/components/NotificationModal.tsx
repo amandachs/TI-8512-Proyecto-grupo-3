@@ -4,17 +4,17 @@ import 'notification-modal/style.css'
 export default function Modal() {
   return (
     <NotificationModal
-      openButtonImageSrc="ruta/imagen.png"
-      openButtonImageAlt="Abrir modal"
-      modalTitle="Ejemplo"
+      openButtonImageSrc= "../images/spoon.svg"
+      openButtonImageAlt="Abrir"
+      modalTitle="Notificación"
       inputPlacehold="Escribe algo"
       notifyButtonText="Enviar"
-      buttonColor="#007BFF"
-      buttonHoverColor="#0056b3"
-      buttonTextColor="#fff"
-      inputFocusColor="#007BFF"
-      modalTextColor="#000"
-      onNotify={(input) => console.log(input)}
+      buttonColor="#000000"
+      buttonHoverColor="#ffffff"
+      buttonTextColor="#ffffff"
+      inputFocusColor="#0b520e"
+      modalTextColor="#ffffff"
+      onNotify={(input: string) => alert(input)}
     />
   );
 }
