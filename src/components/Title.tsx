@@ -19,9 +19,4 @@ const StyledTitulo = styled.h2`
   text-align: center;
   margin: 2rem 0;
   transition: color 0.3s ease, transform 0.2s ease;
-
-  &:hover {
-    color: #4b4b4b;
-    transform: translateY(-2px);
-  }
 `;
