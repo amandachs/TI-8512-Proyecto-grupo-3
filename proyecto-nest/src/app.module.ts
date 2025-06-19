@@ -7,7 +7,7 @@ import { RecetaModule } from './receta/receta.module';
 import { Categoria } from './categoria/entities/categoria.entity';
 import { Receta } from './receta/entities/receta.entity';
 import { MealdbService } from './categoria/mealdb.service';
-import { MealdbRecetaService } from './receta/mealdb.service'; // 👈 nuevo import
+import { MealdbRecetaService } from './receta/mealdb.service'; 
 
 @Module({
   imports: [
