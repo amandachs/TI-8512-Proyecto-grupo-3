@@ -10,9 +10,6 @@ export class Receta {
   nombre: string;
 
   @Column()
-  descripcion: string;
-
-  @Column()
   ingredientes: string;
 
   @ManyToOne(() => Categoria, categoria => categoria.recetas, { eager: true })

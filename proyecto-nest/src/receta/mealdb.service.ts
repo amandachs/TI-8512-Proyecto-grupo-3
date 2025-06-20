@@ -45,7 +45,6 @@ export class MealdbRecetaService {
 
         const receta = this.recetaRepo.create({
           nombre: recetaData.strMeal,
-          descripcion: recetaData.strArea || '',
           ingredientes: ingredientes.join(', '),
           categoria: categoria,
         });
