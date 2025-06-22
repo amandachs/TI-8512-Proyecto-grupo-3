@@ -52,9 +52,9 @@ export class MealdbRecetaService {
         await this.recetaRepo.save(receta);
       }
 
-      console.log(`🌿 Se importaron ${recetasBasicas.length} recetas para la categoría ${categoria.nombre}`);
+      console.log(`Se importaron ${recetasBasicas.length} recetas para la categoría ${categoria.nombre}`);
     }
 
-    console.log('✅ Se completó la siembra de recetas desde TheMealDB');
+    console.log('Se completó la siembra de recetas desde TheMealDB');
   }
 }

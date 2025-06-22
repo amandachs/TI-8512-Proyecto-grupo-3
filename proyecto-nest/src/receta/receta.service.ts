@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Receta } from './entities/receta.entity';
@@ -16,9 +16,16 @@ export class RecetaService {
   ) {}
 
   async create(dto: CreateRecetaDto): Promise<Receta> {
-    const categoria = await this.categoriaRepo.findOne({ where: { id: dto.idCategoria } });
+    if (!dto.nombre || dto.nombre.trim() === '') {
+      throw new BadRequestException('El nombre de la receta es obligatorio'); // 400 (Bad Request)
+    }
+    
+    const categoria = await this.categoriaRepo.findOne({ 
+      where: { id: dto.idCategoria } 
+    });
+    
     if (!categoria) {
-      throw new NotFoundException('Categoría no encontrada');
+      throw new BadRequestException('La categoría especificada no existe'); // 400 (Bad Request)
     }
 
     const receta = this.recetaRepo.create({ ...dto, categoria });
@@ -31,24 +38,40 @@ export class RecetaService {
 
   async findOne(id: number): Promise<Receta> {
     const receta = await this.recetaRepo.findOne({ where: { id } });
-    if (!receta) throw new NotFoundException('Receta no encontrada');
+
+    if (!receta) {
+      throw new NotFoundException('Receta no encontrada'); // 404 (Not Found)
+    }
+
     return receta;
   }
 
   async update(id: number, dto: UpdateRecetaDto): Promise<Receta> {
-    const receta = await this.findOne(id);
+    const receta = await this.findOne(id); // 404 (Not Found)
+
+    if (dto.nombre !== undefined && dto.nombre.trim() === '') {
+      throw new BadRequestException('El nombre de la receta no puede estar vacío'); // 400 (Bad Request)
+    }
+
     if (dto.idCategoria) {
-      const categoria = await this.categoriaRepo.findOne({ where: { id: dto.idCategoria } });
-      if (!categoria) throw new NotFoundException('Categoría no encontrada');
+      const categoria = await this.categoriaRepo.findOne({
+        where: { id: dto.idCategoria },
+      });
+
+      if (!categoria) {
+        throw new BadRequestException('La categoría especificada no existe'); // 400 (Bad Request)
+      }
+
       receta.categoria = categoria;
     }
+
     Object.assign(receta, dto);
     return await this.recetaRepo.save(receta);
   }
 
   async remove(id: number): Promise<void> {
     const result = await this.recetaRepo.delete(id);
-    if (result.affected === 0) throw new NotFoundException('Receta no encontrada');
+    if (result.affected === 0) throw new NotFoundException('Receta no encontrada'); // 404 (Not Found)
   }
 
   async findByCategoria(idCategoria: number): Promise<Receta[]> {
