@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsInt } from 'class-validator';
+import { IsNotEmpty, IsString, IsInt, IsUrl } from 'class-validator';
 
 export class CreateRecetaDto {
   @IsNotEmpty()
@@ -8,6 +8,10 @@ export class CreateRecetaDto {
   @IsNotEmpty()
   @IsString()
   ingredientes: string;
+
+  @IsNotEmpty()
+  @IsUrl()
+  imagen: string;
 
   @IsNotEmpty()
   @IsInt()

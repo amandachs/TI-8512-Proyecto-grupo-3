@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Receta } from './entities/receta.entity';
@@ -17,15 +21,19 @@ export class RecetaService {
 
   async create(dto: CreateRecetaDto): Promise<Receta> {
     if (!dto.nombre || dto.nombre.trim() === '') {
-      throw new BadRequestException('El nombre de la receta es obligatorio'); // 400 (Bad Request)
+      throw new BadRequestException('El nombre de la receta es obligatorio');
     }
-    
-    const categoria = await this.categoriaRepo.findOne({ 
-      where: { id: dto.idCategoria } 
+
+    if (!dto.imagen || dto.imagen.trim() === '') {
+      throw new BadRequestException('La imagen de la receta es obligatoria');
+    }
+
+    const categoria = await this.categoriaRepo.findOne({
+      where: { id: dto.idCategoria },
     });
-    
+
     if (!categoria) {
-      throw new BadRequestException('La categoría especificada no existe'); // 400 (Bad Request)
+      throw new BadRequestException('La categoría especificada no existe');
     }
 
     const receta = this.recetaRepo.create({ ...dto, categoria });
@@ -40,17 +48,25 @@ export class RecetaService {
     const receta = await this.recetaRepo.findOne({ where: { id } });
 
     if (!receta) {
-      throw new NotFoundException('Receta no encontrada'); // 404 (Not Found)
+      throw new NotFoundException('Receta no encontrada');
     }
 
     return receta;
   }
 
   async update(id: number, dto: UpdateRecetaDto): Promise<Receta> {
-    const receta = await this.findOne(id); // 404 (Not Found)
+    const receta = await this.findOne(id);
 
     if (dto.nombre !== undefined && dto.nombre.trim() === '') {
-      throw new BadRequestException('El nombre de la receta no puede estar vacío'); // 400 (Bad Request)
+      throw new BadRequestException(
+        'El nombre de la receta no puede estar vacío',
+      );
+    }
+
+    if (dto.imagen !== undefined && dto.imagen.trim() === '') {
+      throw new BadRequestException(
+        'La imagen de la receta no puede estar vacía',
+      );
     }
 
     if (dto.idCategoria) {
@@ -59,7 +75,7 @@ export class RecetaService {
       });
 
       if (!categoria) {
-        throw new BadRequestException('La categoría especificada no existe'); // 400 (Bad Request)
+        throw new BadRequestException('La categoría especificada no existe');
       }
 
       receta.categoria = categoria;
@@ -71,7 +87,8 @@ export class RecetaService {
 
   async remove(id: number): Promise<void> {
     const result = await this.recetaRepo.delete(id);
-    if (result.affected === 0) throw new NotFoundException('Receta no encontrada'); // 404 (Not Found)
+    if (result.affected === 0)
+      throw new NotFoundException('Receta no encontrada');
   }
 
   async findByCategoria(idCategoria: number): Promise<Receta[]> {

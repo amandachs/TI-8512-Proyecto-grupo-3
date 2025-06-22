@@ -12,6 +12,9 @@ export class Receta {
   @Column()
   ingredientes: string;
 
-  @ManyToOne(() => Categoria, categoria => categoria.recetas, { eager: true })
+  @Column({ nullable: true })
+  imagen: string;
+
+  @ManyToOne(() => Categoria, (categoria) => categoria.recetas, { eager: true })
   categoria: Categoria;
 }

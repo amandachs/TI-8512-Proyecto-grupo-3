@@ -39,20 +39,23 @@ export class MealdbRecetaService {
           const ing = recetaData[`strIngredient${i}`];
           const med = recetaData[`strMeasure${i}`];
           if (ing && ing.trim()) {
-            ingredientes.push(`${med} ${ing}`);
+            ingredientes.push(`${med} ${ing}`.trim());
           }
         }
 
         const receta = this.recetaRepo.create({
           nombre: recetaData.strMeal,
           ingredientes: ingredientes.join(', '),
+          imagen: recetaData.strMealThumb,
           categoria: categoria,
         });
 
         await this.recetaRepo.save(receta);
       }
 
-      console.log(`Se importaron ${recetasBasicas.length} recetas para la categoría ${categoria.nombre}`);
+      console.log(
+        `Se importaron ${recetasBasicas.length} recetas para la categoría ${categoria.nombre}`,
+      );
     }
 
     console.log('Se completó la siembra de recetas desde TheMealDB');
