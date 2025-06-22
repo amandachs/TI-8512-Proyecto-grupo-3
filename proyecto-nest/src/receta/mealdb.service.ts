@@ -15,25 +15,27 @@ export class MealdbRecetaService {
   ) {}
 
   async seedRecetasSiNoExisten() {
-    const total = await this.recetaRepo.count();
-    if (total > 0) {
-      console.log('✔ Recetas ya existen, no se realiza seed.');
-      return;
-    }
+    console.log('🧹 Limpiando recetas existentes...');
+    await this.recetaRepo.clear(); // ⚠ Borrado total de recetas
+    console.log('✔ Recetas eliminadas.');
 
     const categorias = await this.categoriaRepo.find();
 
     for (const categoria of categorias) {
-      const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria.nombre}`;
+      const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(categoria.nombre)}`;
       const lista = await axios.get(url);
       const recetasBasicas = lista.data.meals;
 
       for (const r of recetasBasicas) {
         const detalleUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${r.idMeal}`;
         const detalleResp = await axios.get(detalleUrl);
-        const recetaData = detalleResp.data.meals[0];
+        const recetaData = detalleResp.data.meals?.[0];
 
-        // ingredientes como texto plano
+        if (!recetaData || !recetaData.strMeal || !recetaData.strMealThumb) {
+          console.warn(`⚠ Receta inválida omitida: ${r.idMeal}`);
+          continue;
+        }
+
         const ingredientes: string[] = [];
         for (let i = 1; i <= 20; i++) {
           const ing = recetaData[`strIngredient${i}`];
@@ -44,20 +46,18 @@ export class MealdbRecetaService {
         }
 
         const receta = this.recetaRepo.create({
-          nombre: recetaData.strMeal,
+          nombre: recetaData.strMeal.trim(),
           ingredientes: ingredientes.join(', '),
-          imagen: recetaData.strMealThumb,
+          imagen: recetaData.strMealThumb.trim(),
           categoria: categoria,
         });
 
         await this.recetaRepo.save(receta);
       }
 
-      console.log(
-        `Se importaron ${recetasBasicas.length} recetas para la categoría ${categoria.nombre}`,
-      );
+      console.log(`✅ Se importaron ${recetasBasicas.length} recetas para la categoría ${categoria.nombre}`);
     }
 
-    console.log('Se completó la siembra de recetas desde TheMealDB');
+    console.log('🎉 Se completó la siembra de recetas desde TheMealDB');
   }
 }
